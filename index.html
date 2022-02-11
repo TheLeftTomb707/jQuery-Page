@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../jQuery/jquery-ui-1.13.1/jquery-ui/jquery-ui.theme.css">
+    <link rel="stylesheet" href="../../jQuery/jquery-ui-1.13.1/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="../../jQuery/jquery-ui-1.13.1/jquery-ui/jquery-ui.structure.css">
+    <link rel="stylesheet" href="../../jQuery/jquery-ui-1.13.1/jquery-ui/jquery-ui.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../jQuery/js/jquery-3.6.0.js"></script>
+    <script src="../../jQuery/jquery-ui-1.13.1/jquery-ui/jquery-ui.js"></script>
+    <title>jQuery</title>
+</head>
+
+<body>
+    <div class="page">
+        <nav>
+            <div class="navbar">
+                <a class="title">Hawaii</a>
+                <div class="link">
+                    <a>Home</a>
+                    <a>About</a>
+                    <a>Calender</a>
+                </div>
+            </div>
+        </nav>
+        <div id="progressbar">
+            <div class="progress-label">Loading...</div>
+        </div>
+        <div id="container">
+            <div id="content">
+                <header>
+                    <img id="headerimg" src="braden-jarvis-prSogOoFmkw-unsplash.jpg" alt="hawaii">
+                </header>
+                <div id="accordion">
+                    <h3>fashion</h3>
+                    <div>
+                        <p>
+                            Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+                            ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+                            amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+                            odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+                        </p>
+                    </div>
+                    <h3>cuisine</h3>
+                    <div>
+                        <p>
+                            Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+                            purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+                            velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+                            suscipit faucibus urna.
+                        </p>
+                    </div>
+                    <h3>music</h3>
+                    <div>
+                        <p>
+                            Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+                            Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+                            ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+                            lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+                        </p>
+                        <ul>
+                            <li>List item one</li>
+                            <li>List item two</li>
+                        </ul>
+                    </div>
+                    <h3>culture</h3>
+                    <div>
+                        <p>
+                            Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+                            purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+                            velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+                            suscipit faucibus urna.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="content2">
+                <div><h2 class="datetext" style="font-size: 26px;">Choose a Date to Visit:</h2><div id="datepicker"></div></div>
+                <div>
+                    <h2>Statistics</h2>
+                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered
+                        alteration in some form, by injected humour, or randomised words which don't look even slightly
+                        believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't
+                        anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the
+                        Internet
+                        tend to repeat predefined chunks as necessary, making this the first true generator on the
+                        Internet.
+                        It uses a dictionary of over 200 Latin words, combined with a handful of model sentence
+                        structures,
+                        to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always
+                        free
+                        from repetition, injected humour, or non-characteristic words etc.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        $(function () {
+            $("#accordion").accordion({
+                collapsible: true
+            });
+        });
+        $("#accordion").accordion({
+            heightStyle: "content"
+        });
+        $(function () {
+            $("#progressbar").progressbar({
+                value: 0
+            });
+        });
+        $(function () {
+            $("#datepicker").datepicker();
+        });
+        $(function () {
+            var progressbar = $("#progressbar"),
+                progressLabel = $(".progress-label");
+            progressbar.progressbar({
+                change: function () {
+                    progressLabel.text(progressbar.progressbar("value") + "%");
+                },
+                complete: function () {
+                    document.getElementById("container").style.display = "grid";
+                    document.getElementById("progressbar").style.display = "none";
+                }
+            });
+            function progress() {
+                var val = progressbar.progressbar("value") || 0;
+                progressbar.progressbar("value", val + 2);
+                if (val = 100) {
+                    setTimeout(progress, 30);
+                }
+            }
+            setTimeout(progress, 1000);
+        });
+    </script>
+</body>
+
+</html>
